@@ -59,16 +59,17 @@ body {
 table {
   width: 100%;
 }
-
+input[type="text"] {
+  border: 1px solid rgb(201, 201, 201);
+}
+.table-title {
+  background-color: rgb(163, 163, 163);
+  font-weight: bold;
+}
 .box {
   width: 20px;
   height: 10px;
   border: 1px solid rgb(219, 219, 219);
   border-collapse: collapse;
-}
-
-.table-title {
-  background-color: rgb(217, 217, 217);
-  font-weight: bold;
-
+  text-align: center;
 }
