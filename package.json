@@ -1,0 +1,21 @@
+{
+  "name": "Spreadsheet-App",
+  "version": "1.0.0",
+  "description": "!!~~~~~~In browser spreadsheet application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "open index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-con/Spreadsheet-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tom-con/Spreadsheet-App/issues"
+  },
+  "homepage": "https://github.com/tom-con/Spreadsheet-App#readme"
+}
