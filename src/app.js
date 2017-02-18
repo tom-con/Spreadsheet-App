@@ -11,10 +11,17 @@ $(() => {
     $('tbody').append(`<tr id="row${i}"></tr>`);
     $(`#row${i}`).append(`<td id="col0" class="table-title box">${i}</td>`);
     for (let j = 1; j < 27; j++) {
-      $(`#row${i}`).append(`<td id="col${j}"><input type="text"></td>`);
+      $(`#row${i}`).append(`<td id="col${j}"></td>`);
     }
   }
   $('td').addClass("box");
   $('#col0').addClass("table-title");
   $('#row0').addClass("table-title");
+  console.log($('#col1:nth-child(2)').not('.table-title').first().children());
+  $('#col1:nth-child(2)').not('.table-title').first().addClass("selected");
+  $('.box').not('.table-title').click(() => {
+    $('.box').not('.table-title').removeClass('selected');
+    console.log(event.target);
+    $(event.target).addClass('selected');
+  });
 });
