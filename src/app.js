@@ -21,7 +21,8 @@ $(() => {
   $('#col1:nth-child(2)').not('.table-title').first().addClass("selected");
   $('.box').not('.table-title').click(() => {
     $('.box').not('.table-title').removeClass('selected');
+    console.log();
     console.log(event.target);
-    $(event.target).addClass('selected');
+    $(event.target).toggleClass('selected');
   });
 });
