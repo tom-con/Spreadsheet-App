@@ -59,17 +59,15 @@ body {
 /*table {
   width: 100%;
 }*/
-input[type="text"] {
-  /*border: 1px solid rgb(201, 201, 201);*/
-}
+
 .table-title {
   border-collapse: collapse;
-  background-color: rgb(231, 231, 231);
+  background-color: #F3F3F3;
   font-weight: bold;
   height: 15px;
   padding-left: 30px;
   padding-right: 30px;
-  border: 1px solid rgb(130, 130, 130);
+  border: 1px solid #E2E2E2;
 }
 .box {
   width: 50px;
