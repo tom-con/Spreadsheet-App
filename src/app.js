@@ -7,10 +7,10 @@ $(() => {
       $(`#col${k}`).text(String.fromCharCode(64 + k));
     }
   }
-  for (let i = 1; i < 40; i++) {
+  for (let i = 1; i < 60; i++) {
     $('tbody').append(`<tr id="row${i}"></tr>`);
-    $(`#row${i}`).append(`<td id="col0" class="table-title box"></td>`);
-    for (let j = 1; j <= 27; j++) {
+    $(`#row${i}`).append(`<td id="col0" class="table-title box">${i}</td>`);
+    for (let j = 1; j < 27; j++) {
       $(`#row${i}`).append(`<td id="col${j}"><input type="text"></td>`);
     }
   }
