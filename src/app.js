@@ -17,12 +17,28 @@ $(() => {
   $('td').addClass("box");
   $('#col0').addClass("table-title");
   $('#row0').addClass("table-title");
-  console.log($('#col1:nth-child(2)').not('.table-title').first().children());
   $('#col1:nth-child(2)').not('.table-title').first().addClass("selected");
   $('.box').not('.table-title').click(() => {
-    $('.box').not('.table-title').removeClass('selected');
-    console.log();
-    console.log(event.target);
-    $(event.target).toggleClass('selected');
+    if ($(event.target).hasClass("box")) {
+      $('.box').not('.table-title').removeClass('selected');
+      $(event.target).toggleClass('selected');
+    }
+  });
+  $(document).keydown(() => {
+    if (event.which >= 37 || event.which <= 40) {
+      switch (event.which) {
+        case 37: {
+          let prevBox = $('.selected');
+          let thisRow = $(prevBox).parent();
+          let nextBox = $(prevBox).prev();
+
+          if ($(nextBox)[0] !== $(thisRow).children().first()[0]) {
+            $(prevBox).toggleClass('selected');
+            $(nextBox).toggleClass('selected');
+          }
+          break;
+        }
+      }
+    }
   });
 });
