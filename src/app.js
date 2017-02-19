@@ -1,5 +1,4 @@
-$(() => {
-
+var createTable = function() {
   // Makes the table skeleton and gives IDs to the thead and tbody.
   $('body').append($('<table id="main"><thead id="head"></thead><tbody id="tbody"></tbody><tfoot></tfoot>'));
 
@@ -23,6 +22,12 @@ $(() => {
       $(`#row${i}`).append(`<td id="col${j}" class="box"></td>`);
     }
   }
+  return $('table')[0];
+};
+
+$(() => {
+
+  createTable();
 
   // Selects the tile at position A1 [1,1] with a blue border.
   $('#col1:nth-child(2)').not('.table-title').first().addClass("selected");
@@ -51,44 +56,48 @@ $(() => {
 
       // Handles the 4 different arrow keys using event.which.
       switch (event.which) {
-        case 37: {
-          let nextBox = $(prevBox).prev();
+        case 37:
+          {
+            let nextBox = $(prevBox).prev();
 
-          if ($(nextBox)[0] !== $(thisRow).children().first()[0]) {
-            $(prevBox).toggleClass('selected');
-            $(nextBox).toggleClass('selected');
+            if ($(nextBox)[0] !== $(thisRow).children().first()[0]) {
+              $(prevBox).toggleClass('selected');
+              $(nextBox).toggleClass('selected');
+            }
+            break;
           }
-          break;
-        }
-        case 38: {
-          let nextRow = $(thisRow).prev();
-          let nextBox = $(nextRow).children().eq(thisCol);
+        case 38:
+          {
+            let nextRow = $(thisRow).prev();
+            let nextBox = $(nextRow).children().eq(thisCol);
 
-          if ($(nextBox)[0] !== $('#row0').children().eq(thisCol)[0]) {
-            $(prevBox).toggleClass('selected');
-            $(nextBox).toggleClass('selected');
+            if ($(nextBox)[0] !== $('#row0').children().eq(thisCol)[0]) {
+              $(prevBox).toggleClass('selected');
+              $(nextBox).toggleClass('selected');
+            }
+            break;
           }
-          break;
-        }
-        case 39: {
-          let nextBox = $(prevBox).next();
+        case 39:
+          {
+            let nextBox = $(prevBox).next();
 
-          if ($(prevBox)[0] !== $(thisRow).children().last()[0]) {
-            $(prevBox).toggleClass('selected');
-            $(nextBox).toggleClass('selected');
+            if ($(prevBox)[0] !== $(thisRow).children().last()[0]) {
+              $(prevBox).toggleClass('selected');
+              $(nextBox).toggleClass('selected');
+            }
+            break;
           }
-          break;
-        }
-        case 40: {
-          let nextRow = $(thisRow).next();
-          let nextBox = $(nextRow).children().eq(thisCol);
+        case 40:
+          {
+            let nextRow = $(thisRow).next();
+            let nextBox = $(nextRow).children().eq(thisCol);
 
-          if ($(prevBox)[0] !== $('tbody').children().last().children().eq(thisCol)[0]){
-            $(prevBox).toggleClass('selected');
-            $(nextBox).toggleClass('selected');
+            if ($(prevBox)[0] !== $('tbody').children().last().children().eq(thisCol)[0]) {
+              $(prevBox).toggleClass('selected');
+              $(nextBox).toggleClass('selected');
+            }
+            break;
           }
-          break;
-        }
       }
     }
   });
