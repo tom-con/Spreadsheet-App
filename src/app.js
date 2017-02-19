@@ -36,13 +36,12 @@ $(() => {
     }
   });
 
-  //
+  // Adds keyboard function for navigation using the arrow-keys
   $(document).keydown(() => {
     if (event.which >= 37 || event.which <= 40) {
       let prevBox = $('.selected');
       let thisRow = $(prevBox).parent();
       let thisCol = $(prevBox).index();
-      console.log(thisCol);
 
       switch (event.which) {
         case 37: {
