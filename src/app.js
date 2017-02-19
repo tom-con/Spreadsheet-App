@@ -14,9 +14,9 @@ $(() => {
     }
   }
 
-  // Adds 39 more table rows and fills those rows with 27 columns, including a
+  // Adds 40 more table rows and fills those rows with 27 columns, including a
   // table title column, which will hold row numbers,
-  for (let i = 1; i < 40; i++) {
+  for (let i = 1; i < 41; i++) {
     $('tbody').append(`<tr id="row${i}"></tr>`);
     $(`#row${i}`).append(`<td id="col0" class="table-title box">${i}</td>`);
     for (let j = 1; j < 27; j++) {
@@ -38,11 +38,18 @@ $(() => {
 
   // Adds keyboard function for navigation using the arrow-keys
   $(document).keydown(() => {
+    // Makes sure the keydown event is referring to arrow-keys
     if (event.which >= 37 || event.which <= 40) {
+      // prevBox is the tile that is currently selected, but will be deselected
+      // after the completion of the event. thisRow refers to the current row
+      // of event.target, it returns the tr html element. thisCol is the current
+      // column and returns an integer represeting the index within the parent
+      // tr.
       let prevBox = $('.selected');
       let thisRow = $(prevBox).parent();
       let thisCol = $(prevBox).index();
 
+      // Handles the 4 different arrow keys using event.which.
       switch (event.which) {
         case 37: {
           let nextBox = $(prevBox).prev();
@@ -75,8 +82,6 @@ $(() => {
         case 40: {
           let nextRow = $(thisRow).next();
           let nextBox = $(nextRow).children().eq(thisCol);
-          console.log($('tbody').children().last().children().eq(thisCol)[0]);
-          console.log($(nextBox)[0]);
 
           if ($(prevBox)[0] !== $('tbody').children().last().children().eq(thisCol)[0]){
             $(prevBox).toggleClass('selected');
