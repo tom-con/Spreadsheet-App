@@ -3,25 +3,29 @@ var createTable = function() {
   $('body').append($('<table id="main"><thead id="head"></thead><tbody id="tbody"></tbody><tfoot></tfoot>'));
 
   // Adds the first row which will have alternative formatting than the others.
-  $('thead').append(`<tr id="row0" class="table-title"></tr>`);
+  $('thead').append(`<tr class="row0 table-title"></tr>`);
 
   // Adds letters to first row idscluding column 0.
   for (let k = 0; k < 27; k++) {
-    $(`#row0`).append(`<th id="col${k}" class="table-title box"></th>`);
+    $(`.row0`).append(`<th class="col${k} table-title box"></th>`);
     if (k > 0) {
-      $(`#col${k}`).text(String.fromCharCode(64 + k));
+      $(`.col${k}`).text(String.fromCharCode(64 + k));
     }
   }
 
   // Adds 40 more table rows and fills those rows with 27 columns, including a
   // table title column, which will hold row numbers,
   for (let i = 1; i < 41; i++) {
-    $('tbody').append(`<tr id="row${i}"></tr>`);
-    $(`#row${i}`).append(`<td id="col0" class="table-title box">${i}</td>`);
+    $('tbody').append(`<tr class="row${i}"></tr>`);
+    $(`.row${i}`).append(`<td class="col0 table-title box">${i}</td>`);
     for (let j = 1; j < 27; j++) {
-      $(`#row${i}`).append(`<td id="col${j}" class="box"></td>`);
+      $(`.row${i}`).append(`<td class="col${j} box"></td>`);
     }
   }
+  // Selects the tile at position A1 [1,1] with a blue border.
+  $('.col1:nth-child(2)').not('.table-title').first().addClass("selected");
+
+
   return $('table')[0];
 };
 
@@ -29,8 +33,6 @@ $(() => {
 
   createTable();
 
-  // Selects the tile at position A1 [1,1] with a blue border.
-  $('#col1:nth-child(2)').not('.table-title').first().addClass("selected");
 
   // Creates a function to dynamically select a new tile, but does not
   // allow selection of tiles with the class of 'table-title' on row0 or col0.
@@ -71,7 +73,7 @@ $(() => {
             let nextRow = $(thisRow).prev();
             let nextBox = $(nextRow).children().eq(thisCol);
 
-            if ($(nextBox)[0] !== $('#row0').children().eq(thisCol)[0]) {
+            if ($(nextBox)[0] !== $('.row0').children().eq(thisCol)[0]) {
               $(prevBox).toggleClass('selected');
               $(nextBox).toggleClass('selected');
             }
