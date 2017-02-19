@@ -3,11 +3,11 @@ var createTable = function() {
   $('body').append($('<table id="main"><thead id="head"></thead><tbody id="tbody"></tbody><tfoot></tfoot>'));
 
   // Adds the first row which will have alternative formatting than the others.
-  $('tbody').append(`<tr id="row0" class="table-title"></tr>`);
+  $('thead').append(`<tr id="row0" class="table-title"></tr>`);
 
   // Adds letters to first row idscluding column 0.
   for (let k = 0; k < 27; k++) {
-    $(`#row0`).append(`<td id="col${k}" class="table-title box"></td>`);
+    $(`#row0`).append(`<th id="col${k}" class="table-title box"></th>`);
     if (k > 0) {
       $(`#col${k}`).text(String.fromCharCode(64 + k));
     }
