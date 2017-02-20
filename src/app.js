@@ -84,7 +84,7 @@ $(() => {
             let nextRow = $(thisRow).prev();
             let nextBox = $(nextRow).children().eq(thisCol);
 
-            if ($(nextBox)[0] !== $('.row0').children().eq(thisCol)[0]) {
+            if ($(thisRow)[0] !== $('.row1')[0]) {
               $(prevBox).toggleClass('selected');
               $(nextBox).toggleClass('selected');
             }
