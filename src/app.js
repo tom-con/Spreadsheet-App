@@ -1,47 +1,58 @@
 var createTable = function() {
   // Makes the table skeleton and gives IDs to the thead and tbody.
-  $('body').append($('<table id="main"><thead id="head"></thead><tbody id="tbody"></tbody><tfoot></tfoot>'));
+  // $('body').append($('<table id="main"><thead id="head"></thead><tbody id="tbody"></tbody><tfoot></tfoot>'));
+  let table = $('<table id="main"></table>');
+  let thead = $('<thead id="head"></thead>');
+  let tbody = $('<tbody id="tbody"></tbody>');
+  table.append(thead);
+  table.append(tbody);
 
   // Adds the first row which will have alternative formatting than the others.
-  $('thead').append(`<tr class="row0 table-title"></tr>`);
+  let row0 = $(`<tr class="row0 table-title"></tr>`);
+
+  thead.append(row0);
 
   // Adds letters to first row idscluding column 0.
   for (let k = 0; k < 27; k++) {
-    $(`.row0`).append(`<th class="col${k} table-title box"></th>`);
+    let col = $(`<th class="col${k} table-title box"></th>`);
+    row0.append(col);
     if (k > 0) {
-      $(`.col${k}`).text(String.fromCharCode(64 + k));
+      col.text(String.fromCharCode(64 + k));
     }
   }
 
   // Adds 40 more table rows and fills those rows with 27 columns, including a
   // table title column, which will hold row numbers,
   for (let i = 1; i < 41; i++) {
-    $('tbody').append(`<tr class="row${i}"></tr>`);
-    $(`.row${i}`).append(`<td class="col0 table-title box">${i}</td>`);
+    let row = $(`<tr class="row${i}"></tr>`);
+    tbody.append(row);
+    row.append(`<td class="col0 table-title box">${i}</td>`);
     for (let j = 1; j < 27; j++) {
-      $(`.row${i}`).append(`<td class="col${j} box"></td>`);
+      if (i === 1 && j === 1) {
+        row.append(`<td class="selected col${j} box"></td>`);
+      } else {
+        row.append(`<td class="col${j} box"></td>`);
+      }
+
     }
   }
-  // Selects the tile at position A1 [1,1] with a blue border.
-  $('.col1:nth-child(2)').not('.table-title').first().addClass("selected");
 
-
-  return $('table')[0];
+  tbody.children().children().not('.table-title').click(() => {
+    if ($(event.target).hasClass('box')) {
+      tbody.children().children().not('.table-title').removeClass('selected');
+      $(event.target).toggleClass('selected');
+    }
+  });
+  return table[0];
 };
 
 $(() => {
 
   createTable();
 
-
   // Creates a function to dynamically select a new tile, but does not
   // allow selection of tiles with the class of 'table-title' on row0 or col0.
-  $('.box').not('.table-title').click(() => {
-    if ($(event.target).hasClass("box")) {
-      $('.box').not('.table-title').removeClass('selected');
-      $(event.target).toggleClass('selected');
-    }
-  });
+
 
   // Adds keyboard function for navigation using the arrow-keys
   $(document).keydown(() => {
