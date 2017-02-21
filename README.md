@@ -18,3 +18,7 @@ This application seeks to recreate the look and feel of popular spreadsheet appl
 **TESTING**
 1. Tests can be accessed by installing Mocha, Chai, and Karma. This can be done with ```npm install --save-dev karma mocha chai karma-mocha karma-chai karma-chrome-launcher karma-mocha-reporter```. <br />
 2. To run the test suite use ```npm test```. <br />
+<br />
+<br />
+**DEPLOYMENT**
+https://tom-con-spreadsheet-app.surge.sh/
