@@ -1,7 +1,7 @@
 ########################## Spreadsheet-App <br />
 !!~~~~~~In browser spreadsheet application <br />
 <br />
-This application seeks to recreate popular spreadsheet applications in the browser.<br />
+This application seeks to recreate the look and feel of popular spreadsheet applications in the browser.<br />
 <br />
 <br />
 **STARTING THE APP** <br />

@@ -1,4 +1,3 @@
-
 describe("createTable", function() {
 
   it("creates a table with a thead", function() {
@@ -21,7 +20,6 @@ describe("createTable", function() {
     let table = createTable();
     let row = table.getElementsByClassName('row1')[0];
     let col = table.getElementsByClassName('col1')[1];
-    console.log(table.querySelectorAll('.selected'));
     expect(table.querySelectorAll('.selected')[0].parentNode).to.eq(row);
     expect(table.querySelectorAll('.selected')[0]).to.eq(col);
   })
@@ -46,7 +44,7 @@ describe("createTable", function() {
       document.body.removeChild(container);
     })
 
-    it("allows users to select a cell by clicking on it", function() {
+    it("allows users to select a cell by clicking on it(A3)", function() {
 
       // For the setup in this test, find any cell other than A1
       let tbody = table.querySelector('tbody')
@@ -63,6 +61,87 @@ describe("createTable", function() {
 
       // Check to make sure that the A1 cell is no longer selected
       expect(rows[0].children[1].classList.contains('selected')).to.eq(false)
+    })
+    it("allows users to select a cell by clicking on it(T20)", function() {
+
+      // For the setup in this test, find any cell other than A1
+      let tbody = table.querySelector('tbody');
+      let rows = tbody.querySelectorAll('tr');
+      let T20 = rows[19].children[20];
+
+      // Simulate clicking on the cell
+      T20.dispatchEvent(new Event('click', {
+        bubbles: true
+      }));
+
+      // Check to make sure that the T20 cell has been selected
+      expect(T20.classList.contains('selected')).to.eq(true);
+
+      // Check to make sure that the A1 cell is no longer selected
+      expect(rows[0].children[1].classList.contains('selected')).to.eq(false);
+    })
+    it("does not allow users to select a column title cell by clicking on it(G)", function() {
+
+      // For the setup in this test, find any cell other than A1
+      let thead = table.querySelector('thead');
+      let G0 = thead.children[0].children[7];
+
+      // Simulate clicking on the cell
+      G0.dispatchEvent(new Event('click', {
+        bubbles: true
+      }));
+
+      // Check to make sure that the T20 cell has been selected
+      expect(G0.classList.contains('selected')).to.eq(false);
+    })
+    it("does not allow users to select a row title cell by clicking on it(28)", function() {
+
+      // For the setup in this test, find any cell other than A1
+      let tbody = table.querySelector('tbody');
+      let rows = tbody.children;
+      let twentyEight = rows[27].children[0];
+
+      // Simulate clicking on the cell
+      twentyEight.dispatchEvent(new Event('click', {
+        bubbles: true
+      }));
+
+      // Check to make sure that the T20 cell has been selected
+      expect(twentyEight.classList.contains('selected')).to.eq(false);
+    })
+    it("does not allow users to select a cell outside of the grid (down-arrow-key on V40)", function() {
+      let tbody = table.querySelector('tbody');
+      let rows = tbody.querySelectorAll('tr');
+      let V40 = rows[39].children[22];
+
+      V40.dispatchEvent(new Event('click', {
+        bubbles: true
+      }));
+
+      let event = new KeyboardEvent('keydown', {
+        bubbles: true,
+        key: 'ArrowDown'
+      });
+      document.dispatchEvent(event);
+
+      expect(V40.classList.contains('selected')).to.eq(true);
+    });
+    it("does not allow users to select a cell outside of the grid (right-arrow-key on Z16)", function() {
+      let tbody = table.querySelector('tbody');
+      let rows = tbody.querySelectorAll('tr');
+      let Z16 = rows[15].children[26];
+
+      Z16.dispatchEvent(new Event('click', {
+        bubbles: true
+      }));
+
+      let event = new KeyboardEvent('keydown', {
+        bubbles: true,
+        key: 'ArrowRight'
+      });
+      document.dispatchEvent(event);
+
+      expect(Z16.classList.contains('selected')).to.eq(true);
     })
   })
 
